@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle de Formulaire</title>
+    <style>
+        .erreur {
+            color: white;
+            background-color: red;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercice : Contrôle de Formulaire</h1>
+    <form id="formUtilisateur">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom">
+        <br><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Votre prénom">
+        <br><br>
+        <label for="dateNaissance">Date de Naissance :</label>
+        <input type="date" id="dateNaissance" name="dateNaissance">
+        <br><br>
+        <button type="button" id="btnValider">Valider</button>
+    </form>
+    <div id="messageErreur" class="erreur"></div>
+    <div id="messageSuccess" class="success">Formulaire soumis avec succès !</div>
+
+    <script>
+        document.getElementById('btnValider').addEventListener('click', function () {
+            const nom = document.getElementById('nom').value.trim();
+            const prenom = document.getElementById('prenom').value.trim();
+            const dateNaissance = document.getElementById('dateNaissance').value.trim();
+            const messageErreur = document.getElementById('messageErreur');
+            const messageSuccess = document.getElementById('messageSuccess');
+
+            // Réinitialiser les messages
+            messageErreur.style.display = 'none';
+            messageSuccess.style.display = 'none';
+
+            // Validation des champs
+            let erreur = '';
+
+            if (!nom) {
+                erreur += 'Le nom doit être renseigné.<br>';
+            }
+
+            if (!prenom) {
+                erreur += 'Le prénom doit être renseigné.<br>';
+            }
+
+            if (!dateNaissance) {
+                erreur += 'La date de naissance doit être renseignée.<br>';
+            }
+
+            if (erreur) {
+                messageErreur.innerHTML = erreur;
+                messageErreur.style.display = 'block';
+            } else {
+                messageSuccess.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
