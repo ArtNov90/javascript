@@ -1,5 +1,5 @@
 // Déclaration d'une variable contenant une valeur numérique entière
-let num = 10; // Vous pouvez changer cette valeur pour tester d'autres cas
+let num = 10;
 
 // Initialisation de la variable somme à 0
 let somme = 0;

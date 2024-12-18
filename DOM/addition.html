@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition</title>
+    <style>
+        #messageErreur {
+            color: white;
+            background-color: red;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+        #resultat {
+            font-weight: bold;
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercice d'Addition</h1>
+    <form id="formAddition">
+        <label for="nombre1">Nombre 1 : </label>
+        <input type="text" id="nombre1">
+        <br><br>
+        <label for="nombre2">Nombre 2 : </label>
+        <input type="text" id="nombre2">
+        <br><br>
+        <button type="button" id="btnCalculer">Calculer</button>
+    </form>
+    <div id="messageErreur">Vous devez saisir un nombre.</div>
+    <div id="resultat"></div>
+
+    <script>
+        document.getElementById('btnCalculer').addEventListener('click', function () {
+            const nombre1 = document.getElementById('nombre1').value;
+            const nombre2 = document.getElementById('nombre2').value;
+            const messageErreur = document.getElementById('messageErreur');
+            const resultat = document.getElementById('resultat');
+
+            // Réinitialiser l'affichage
+            messageErreur.style.display = 'none';
+            resultat.textContent = '';
+
+            // Vérification des saisies
+            if (isNaN(nombre1) || isNaN(nombre2) || nombre1.trim() === '' || nombre2.trim() === '') {
+                messageErreur.style.display = 'block';
+                return;
+            }
+
+            // Calcul de l'addition
+            const somme = parseFloat(nombre1) + parseFloat(nombre2);
+            resultat.textContent = `Le résultat de l'addition est : ${somme}`;
+        });
+    </script>
+</body>
+</html>
