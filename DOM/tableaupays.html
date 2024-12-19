@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau des Pays</title>
+    <script>
+        let data = {
+            "polluant": "CO2",
+            "unite": "milliards de tonnes",
+            "annee": 2017,
+            "pays": [
+                { "nom": "Chine", "valeur": 9.26, "pourcentage": 28.2, "code": "cn" },
+                { "nom": "Etats-Unis", "valeur": 4.76, "pourcentage": 14.5, "code": "us" },
+                { "nom": "Inde", "valeur": 2.16, "pourcentage": 6.6, "code": "in" },
+                { "nom": "Russie", "valeur": 1.54, "pourcentage": 4.7, "code": "ru" },
+                { "nom": "Japon", "valeur": 1.13, "pourcentage": 3.4, "code": "jp" },
+                { "nom": "Allemagne", "valeur": 0.72, "pourcentage": 2.2, "code": "de" },
+                { "nom": "Corée du Sud", "valeur": 0.6, "pourcentage": 1.8, "code": "kr" },
+                { "nom": "Iran", "valeur": 0.57, "pourcentage": 1.7, "code": "ir" },
+                { "nom": "Canada", "valeur": 0.55, "pourcentage": 1.7, "code": "ca" }
+            ]
+        };
+
+        function afficherTableau() {
+            // Modifier les titres
+            document.getElementById("titre").textContent = `Polluant : ${data.polluant} (${data.unite})`;
+            document.getElementById("annee").textContent = `Année : ${data.annee}`;
+
+            // Récupérer le corps du tableau
+            const tbody = document.getElementById("corps");
+
+            // Générer une ligne pour chaque pays
+            data.pays.forEach(pays => {
+                const row = document.createElement("tr");
+
+                // Colonne Nom avec drapeau
+                const nomCell = document.createElement("td");
+                nomCell.innerHTML = `<img src="https://flagcdn.com/24x18/${pays.code}.png" alt="${pays.nom}" /> ${pays.nom}`;
+                row.appendChild(nomCell);
+
+                // Colonne Valeur
+                const valeurCell = document.createElement("td");
+                valeurCell.textContent = pays.valeur;
+                row.appendChild(valeurCell);
+
+                // Colonne Pourcentage
+                const pourcentageCell = document.createElement("td");
+                pourcentageCell.textContent = `${pays.pourcentage} %`;
+                row.appendChild(pourcentageCell);
+
+                // Ajouter la ligne au tableau
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+</head>
+<body onload="afficherTableau()">
+    <h1 id="titre"></h1>
+    <h2 id="annee"></h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Valeur</th>
+                <th>%</th>
+            </tr>
+        </thead>
+        <tbody id="corps">
+            <!-- Les lignes des pays seront insérées ici -->
+        </tbody>
+    </table>
+</body>
+</html>
